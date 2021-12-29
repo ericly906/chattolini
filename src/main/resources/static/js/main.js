@@ -8,13 +8,23 @@ var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 
+var registrationForm = document.querySelector('#registrationForm');
+
 var stompClient = null;
 var username = null;
+var newUser = null;
+var newPsw = null;
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
+
+function register(event) {
+    newUser = document.querySelector('#newUser').value.trim();
+    newPsw = document.querySelector('#psw').value.trim();
+    
+}
 
 function connect(event) {
     username = document.querySelector('#name').value.trim();
@@ -119,3 +129,4 @@ function getAvatarColor(messageSender) {
 
 usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', send, true)
+registrationForm.addEventListener('submit', register, true)
