@@ -12,6 +12,7 @@ var registrationForm = document.querySelector('#registrationForm');
 
 var stompClient = null;
 var username = null;
+var pw = null;
 var newUser = null;
 var newPsw = null;
 
@@ -20,24 +21,55 @@ var colors = [
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
+function makeid(length) {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * 
+        charactersLength));
+    }
+    return result;
+}
+
 function register(event) {
     newUser = document.querySelector('#newUser').value.trim();
     newPsw = document.querySelector('#psw').value.trim();
-    
+    var randEmail = makeid(6) + '@' + makeid(6) + ".com"
+    const myJSON = {"username": newUser, "email": randEmail, "password": newPsw, "role": ["user"]};
+    fetch("http://localhost:8080/api/auth/signup", {method: 'POST', body: JSON.stringify(myJSON), headers: {'Content-type': 'application/json; charset=UTF-8'}})
+    .then(response => response.json())
+    .then(json => {console.log(json);})
+    .then(location.href = 'http://localhost:8080/');
+    event.preventDefault();
 }
+
 
 function connect(event) {
     username = document.querySelector('#name').value.trim();
-
-    if(username) {
-        usernamePage.classList.add('hidden');
-        chatPage.classList.remove('hidden');
-
-        var socket = new SockJS("/eric");
-        stompClient = Stomp.over(socket);
-
-        stompClient.connect({}, onConnected, onError);
-    }
+    pw = document.querySelector('#pw').value.trim();
+    const signinJSON = {"username": username, "password": pw};
+    fetch("http://localhost:8080/api/auth/signin", {method: 'POST', body: JSON.stringify(signinJSON), headers: {'Content-type': 'application/json; charset=UTF-8'}})
+    .then((response) => {
+        if (response.ok) {
+            console.log(response.accessToken);
+            var req = new XMLHttpRequest();
+            req.open('GET', "http://localhost:8080/api/auth/signin", true);
+            req.setRequestHeader('Authorization', 'Bearer' + response.accessToken);
+            if(username) {
+                usernamePage.classList.add('hidden');
+                chatPage.classList.remove('hidden');
+        
+                var socket = new SockJS("/eric");
+                stompClient = Stomp.over(socket);
+        
+                stompClient.connect({}, onConnected, onError);
+            }
+        } else {
+            throw new Error('Bad credentials');
+        }
+    })
+    .catch((error) => {console.log(error);});
     event.preventDefault();
 }
 
@@ -127,6 +159,12 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', send, true)
-registrationForm.addEventListener('submit', register, true)
+if (usernameForm) {
+    usernameForm.addEventListener('submit', connect, true)
+}
+if (messageForm){
+    messageForm.addEventListener('submit', send, true)
+}
+if (registrationForm) {
+    registrationForm.addEventListener('submit', register, true)
+}

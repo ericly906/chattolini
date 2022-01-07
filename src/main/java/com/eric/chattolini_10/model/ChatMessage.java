@@ -1,5 +1,6 @@
 package com.eric.chattolini_10.model;
 
+
 public class ChatMessage {
     private String content;
     private String sender;
