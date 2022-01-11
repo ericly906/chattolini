@@ -66,6 +66,7 @@ function connect(event) {
                 stompClient.connect({}, onConnected, onError);
             }
         } else {
+            alert('Bad credentials');
             throw new Error('Bad credentials');
         }
     })
