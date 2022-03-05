@@ -17,6 +17,11 @@ html {
   overflow: hidden;
 }
 
+@viewport {
+  width: device-width ;
+  zoom: 1.0 ;
+}
+
 /* Animations */
 @-webkit-keyframes bg-scrolling-reverse {
   100% {
