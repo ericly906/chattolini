@@ -37,10 +37,10 @@ function register(event) {
     newPsw = document.querySelector('#psw').value.trim();
     var randEmail = makeid(6) + '@' + makeid(6) + ".com"
     const myJSON = {"username": newUser, "email": randEmail, "password": newPsw, "role": ["user"]};
-    fetch("http://chattolini.herokuapp.com/api/auth/signup", {method: 'POST', body: JSON.stringify(myJSON), headers: {'Content-type': 'application/json; charset=UTF-8'}})
+    fetch("https://chattolini.herokuapp.com/api/auth/signup", {method: 'POST', body: JSON.stringify(myJSON), headers: {'Content-type': 'application/json; charset=UTF-8'}})
     .then(response => response.json())
     .then(json => {console.log(json);})
-    .then(location.href = 'http://chattolini.herokuapp.com/');
+    .then(location.href = 'https://chattolini.herokuapp.com/');
     event.preventDefault();
 }
 
@@ -49,12 +49,12 @@ function connect(event) {
     username = document.querySelector('#name').value.trim();
     pw = document.querySelector('#pw').value.trim();
     const signinJSON = {"username": username, "password": pw};
-    fetch("http://chattolini.herokuapp.com/api/auth/signin", {method: 'POST', body: JSON.stringify(signinJSON), headers: {'Content-type': 'application/json; charset=UTF-8'}})
+    fetch("https://chattolini.herokuapp.com/api/auth/signin", {method: 'POST', body: JSON.stringify(signinJSON), headers: {'Content-type': 'application/json; charset=UTF-8'}})
     .then((response) => {
         if (response.ok) {
             console.log(response.accessToken);
             var req = new XMLHttpRequest();
-            req.open('GET', "http://chattolini.herokuapp.com/api/auth/signin", true);
+            req.open('GET', "https://chattolini.herokuapp.com/api/auth/signin", true);
             req.setRequestHeader('Authorization', 'Bearer' + response.accessToken);
             if(username) {
                 usernamePage.classList.add('hidden');
