@@ -140,7 +140,7 @@ function onMessageReceived(payload) {
         var usernameElement = document.createElement('span');
         var currentTime = new Date().toLocaleTimeString();
         var usernameText = document.createElement("usernameText");
-        userNameText.innerHTML = "<button style='background: none;border: none;padding: 0;text-decoration: underline;cursor: pointer;'>" + message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime + "</button>";
+        usernameText.innerHTML = "<button style='background: none;border: none;padding: 0;text-decoration: underline;cursor: pointer;'>" + message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime + "</button>";
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
     }
