@@ -127,7 +127,8 @@ function onMessageReceived(payload) {
         messageElement.classList.add('chat-message');
 
         var usernameElement = document.createElement('span');
-        var usernameText = document.createTextNode(message.sender);
+        var currentTime = new Date().toLocaleTimeString();
+        var usernameText = document.createTextNode(message.sender + "      " + currentTime);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
     }
