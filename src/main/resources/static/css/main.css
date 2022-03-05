@@ -183,7 +183,7 @@ body .username-page-container .username-submit {
 
 
 body .chat-container {
-  left: 178px;
+  left: 0;
   top: 92px;
   right: 0;
   bottom: 0;
@@ -348,7 +348,7 @@ body .header {
   left: 0;
   right: 0;
   height: 92px;
-  background-color: #111;
+  background-color: transparent;
 }
 
 body .sideNav {
