@@ -128,7 +128,7 @@ function onMessageReceived(payload) {
 
         var usernameElement = document.createElement('span');
         var currentTime = new Date().toLocaleTimeString();
-        var usernameText = document.createTextNode(message.sender + "      " + currentTime);
+        var usernameText = document.createTextNode(message.sender + '&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp' + currentTime);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
     }
