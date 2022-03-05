@@ -6,6 +6,9 @@ var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
+
+var privateMessageArea = document.querySelector('#privateMessageArea');
+
 var connectingElement = document.querySelector('.connecting');
 
 var registrationForm = document.querySelector('#registrationForm');
@@ -88,6 +91,14 @@ function onConnected() {
     connectingElement.classList.add('hidden');
 }
 
+//var userDM = null;
+
+/**
+function onPrivateConnected(userDM) {
+    stompClient.subscribe('/topic/' + userDM, onPrivateMessageReceived);
+}
+**/
+
 
 function onError(error) {
     connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
@@ -128,7 +139,8 @@ function onMessageReceived(payload) {
 
         var usernameElement = document.createElement('span');
         var currentTime = new Date().toLocaleTimeString();
-        var usernameText = document.createTextNode(message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime);
+        var usernameText = document.createElement("usernameText");
+        userNameText.innerHTML = "<button style='background: none;border: none;padding: 0;text-decoration: underline;cursor: pointer;'>" + message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime + "</button>";
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
     }
@@ -142,6 +154,27 @@ function onMessageReceived(payload) {
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
 }
+
+/**
+function onPrivateMessageReceived(payload) {
+    var message = JSON.parse(payload.body);
+    var messageElement = document.createElement('li');
+    messageElement.classList.add('chat-message');
+    var usernameElement = document.createElement('span');
+    var currentTime = new Date().toLocaleTimeString();
+    var usernameText = document.createTextNode(message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime);
+    usernameElement.appendChild(usernameText);
+    messageElement.appendChild(usernameElement);
+    //need to make private messaging area
+    var textElement = document.createElement('p');
+    var messageText = document.createTextNode(message.content);
+    textElement.appendChild(messageText);
+
+    messageElement.appendChild(textElement);
+    privateMessageArea.appendChild(messageElement);
+    privateMessageArea.scrollTop = privateMessageArea.scrollHeight;
+}
+**/
 
 
 
