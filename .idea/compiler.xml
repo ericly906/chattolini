@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="chattolini_1.0" target="11" />
+      <module name="chattolini_1.0" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
