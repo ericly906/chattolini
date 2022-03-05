@@ -140,7 +140,8 @@ function onMessageReceived(payload) {
         var usernameElement = document.createElement('span');
         var currentTime = new Date().toLocaleTimeString();
         var usernameText = document.createElement("usernameText");
-        usernameText.innerHTML = "<button style='background: none;border: none;padding: 0;text-decoration: underline;cursor: pointer;font-size: 18px;font-weight: 600;color: #cfcfcf;'>" + message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime + "</button>";
+        usernameText.innerHTML = "<div class='popwrap'><input type='button' id='toggle' value=" + message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime + "onclick='togglePopUp()' style='background: none;border: none;padding: 0;text-decoration: underline;cursor: pointer;font-size: 18px;font-weight: 600;color: #cfcfcf;'/><div class='popup' id='pop' style='display: none'><input type='button'  id='toggle' class='close' value=&times; onclick='togglePopUp()'/>" + message.sender + "<button class='dm'>Direct Message</button></div>";
+
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
     }
@@ -176,6 +177,14 @@ function onPrivateMessageReceived(payload) {
 }
 **/
 
+//popup box
+function togglePopUp() {
+  if (document.getElementById('pop').style.display == "block") {
+    document.getElementById('pop').style.display = "none";
+  } else {
+    document.getElementById('pop').style.display = "block";
+  }
+}
 
 
 if (usernameForm) {

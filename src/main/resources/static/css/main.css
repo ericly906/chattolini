@@ -1,8 +1,6 @@
 /* Cool infinite background scrolling animation.
  * Twitter: @kootoopas
  */
-/* Exo thin font from Google. */
-@import url(https://fonts.googleapis.com/css?family=Exo:100);
 /* Background data (Original source: https://subtlepatterns.com/grid-me/) */
 * {
   -webkit-box-sizing: border-box;
@@ -354,6 +352,38 @@ body .header {
   background-color: transparent;
 }
 
+body .popup {
+  background-color: #2e2e2e;
+  width: 150px;
+  height: 100px;
+  position: absolute;
+  padding-top: 10px;
+  padding-left: 10px;
+  color: #FFF;
+  z-index: 10;
+}
+
+body .close {
+  background: none;
+  border: none;
+  float: right;
+  font-size: 20px;
+  color: #FFF;
+}
+
+body .dm {
+  width: 80px;
+  height: 30px;
+  margin-top: 10px;
+  font-size: 10px;
+  border: none;
+  background-color: #391d8f;
+  position: absolute;
+  top: 30%;
+  -ms-transform: translateY(-50%);
+  transform: translateX(-50%);
+}
+
 body .sideNav {
   position: absolute;
   left: 0;
@@ -374,6 +404,8 @@ body .sideNav a {
 body .sideNav a:hover {
   color: #f1f1f1;
 }
+
+
 
 body .main {
   margin-left: 200px;
