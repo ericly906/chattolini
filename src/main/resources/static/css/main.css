@@ -107,7 +107,7 @@ body h2 {
   font-family: "SnasmW05-Regular";
   color: #f8f7fa;
   font-style: italic;
-  text-indent 50px;
+  text-indent: 50px;
 }
 
 body a {
@@ -231,7 +231,7 @@ body #chat-page .event-message p {
 }
 
 body #chat-page .chat-message {
-  padding-left: 68px;
+  padding-left: 30px;
   position: relative;
 }
 
