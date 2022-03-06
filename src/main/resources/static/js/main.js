@@ -141,7 +141,6 @@ function onMessageReceived(payload) {
         var currentTime = new Date().toLocaleTimeString();
         var usernameText = document.createElement("usernameText");
         usernameText.innerHTML = "<input type='button' id='toggle' value=" + message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime + "onclick='togglePopUp()' style='background: none;border: none;padding: 0;text-decoration: underline;cursor: pointer;font-size: 18px;font-weight: 600;color: #cfcfcf;'/><div class='popup' id='pop' style='display: none'><input type='button' class='close' value=&times; onclick='togglePopUp()'/>" + message.sender + "<button class='dm'>Direct Message</button></div>";
-        usernameText.onclick = togglePopUp();
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
     }
