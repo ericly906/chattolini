@@ -150,7 +150,11 @@ function onMessageReceived(payload) {
         var usernameElement = document.createElement('span');
         var currentTime = new Date().toLocaleTimeString();
         var usernameText = document.createElement("usernameText");
-        usernameText.innerHTML = "<input type='button' value=" + message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime + " onclick='togglePopUp(" + messageCount + ")' style='background: none;border: none;padding: 0;text-decoration: underline;cursor: pointer;font-size: 18px;font-weight: 600;color: #cfcfcf;'/><div class='popup' id= " + messageCount + " style='display: none'><input type='button' class='close' value=&times; onclick='togglePopUp(" + messageCount + ")'/>" + message.sender + "<button class='dm'>Direct Message</button></div>";
+        if (message.sender == username) {
+            usernameText.innerHTML = "<input type='button' value=" + message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime + " onclick='togglePopUp(" + messageCount + ")' style='background: none;border: none;padding: 0;text-decoration: underline;cursor: pointer;font-size: 18px;font-weight: 600;color: #cfcfcf;'/><div class='popup' id= " + messageCount + " style='display: none'><input type='button' class='close' value=&times; onclick='togglePopUp(" + messageCount + ")'/>" + message.sender + "</div>";
+        } else {
+            usernameText.innerHTML = "<input type='button' value=" + message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime + " onclick='togglePopUp(" + messageCount + ")' style='background: none;border: none;padding: 0;text-decoration: underline;cursor: pointer;font-size: 18px;font-weight: 600;color: #cfcfcf;'/><div class='popup' id= " + messageCount + " style='display: none'><input type='button' class='close' value=&times; onclick='togglePopUp(" + messageCount + ")'/>" + message.sender + "<button class='dm'>Direct Message</button></div>";
+        }
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
         messageCount += 1;

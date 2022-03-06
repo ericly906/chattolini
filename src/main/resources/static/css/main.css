@@ -202,6 +202,8 @@ body #chat-page ul {
   height: calc(100% - 150px);
 }
 
+
+
 body #chat-page #messageForm {
   padding: 20px;
 }
