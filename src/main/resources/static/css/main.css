@@ -376,12 +376,11 @@ body .dm {
   height: 30px;
   margin-top: 10px;
   font-size: 10px;
+  color: #cfcfcf;
   border: none;
   background-color: #391d8f;
   position: absolute;
   top: 30%;
-  -ms-transform: translateY(-50%);
-  transform: translateX(-50%);
 }
 
 body .sideNav {
