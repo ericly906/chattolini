@@ -19,6 +19,8 @@ var pw = null;
 var newUser = null;
 var newPsw = null;
 
+var messageCount = 0;
+
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
@@ -35,11 +37,11 @@ function makeid(length) {
     return result;
 }
 
-function togglePopUp() {
-  if (document.getElementById('pop').style.display == "block") {
-    document.getElementById('pop').style.display = "none";
+function togglePopUp(id) {
+  if (document.getElementById(id).style.display == "block") {
+    document.getElementById(id).style.display = "none";
   } else {
-    document.getElementById('pop').style.display = "block";
+    document.getElementById(id).style.display = "block";
   }
 }
 
@@ -148,9 +150,10 @@ function onMessageReceived(payload) {
         var usernameElement = document.createElement('span');
         var currentTime = new Date().toLocaleTimeString();
         var usernameText = document.createElement("usernameText");
-        usernameText.innerHTML = "<input type='button' value=" + message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime + " onclick='togglePopUp()' style='background: none;border: none;padding: 0;text-decoration: underline;cursor: pointer;font-size: 18px;font-weight: 600;color: #cfcfcf;'/><div class='popup' id='pop' style='display: none'><input type='button' class='close' value=&times; onclick='togglePopUp()'/>" + message.sender + "<button class='dm'>Direct Message</button></div>";
+        usernameText.innerHTML = "<input type='button' value=" + messageCount + '. ' + message.sender + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + currentTime + " onclick='togglePopUp(" + messageCount + ")' style='background: none;border: none;padding: 0;text-decoration: underline;cursor: pointer;font-size: 18px;font-weight: 600;color: #cfcfcf;'/><div class='popup' id= " + messageCount + " style='display: none'><input type='button' class='close' value=&times; onclick='togglePopUp(" + messageCount + ")'/>" + message.sender + "<button class='dm'>Direct Message</button></div>";
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
+        messageCount += 1;
     }
 
     var textElement = document.createElement('p');
